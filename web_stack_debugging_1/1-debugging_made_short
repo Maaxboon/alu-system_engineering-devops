@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configures the server to listen on port 80 and ensures nginx is not running according to init
+# Configures Nginx to listen on port 80
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo systemctl stop nginx
+sudo systemctl restart nginx
 echo "" | sudo tee /run/nginx.pid > /dev/null
