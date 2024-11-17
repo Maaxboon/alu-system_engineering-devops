@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Configures the server to listen on port 80 and ensures nginx is not running according to init
+# configures a server to listening on port 80 of all servers active IPv4 IPs
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-sudo systemctl stop nginx
-echo "" | sudo tee /run/nginx.pid > /dev/null
+sudo service nginx restart
+echo "" | sudo dd status=none of=/run/nginx.pid
