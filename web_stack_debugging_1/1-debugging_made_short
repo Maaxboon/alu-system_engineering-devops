@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-
-# Check if Nginx is not running
-if ! service nginx status | grep running >/dev/null 2>&1; then
-  exit 1  # Exit script with error code
-fi
-
-# Ensure Nginx listens on port 80
-! grep -q "listen 80" /etc/nginx/nginx.conf && sudo sed -i '/server {/a \ \tlisten 80;' /etc/nginx/nginx.conf
-
-# Reload Nginx configuration
-service nginx reload
+# Configures the server to listen on port 80 and ensures nginx is not running according to init
+sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo systemctl stop nginx
+echo "" | sudo tee /run/nginx.pid > /dev/null
